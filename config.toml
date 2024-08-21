@@ -1,0 +1,18 @@
+# Telegram bot token
+telegram_token = ""
+
+[cloudflare]
+# get your id and token from https://dash.cloudflare.com/
+id = ""
+token = ""
+
+[models]
+# Check available models from https://developers.cloudflare.com/workers-ai/models
+
+text = "@cf/meta/llama-3.1-8b-instruct"
+text_to_image = "@cf/unum/uform-gen2-qwen-500m"
+image_to_text = "@cf/bytedance/stable-diffusion-xl-lightning"
+
+[bot]
+wait_message = "Waiting for the model to respond..."
+wait_image = "Waiting for drawing..."
