@@ -48,7 +48,7 @@ pub async fn chat(bot: Bot, msg: Message) -> ResponseResult<Message> {
         .reply_parameters(ReplyParameters::new(msg.id))
         .await?;
 
-    let trimed = msg.text().unwrap().trim_start_matches("/chat").trim();
+    let trimed = msg.text().unwrap().split_once(" ").unwrap().1;
 
     let model = TextModel::default();
     let messages = vec![text::ChatMessage::new(
@@ -64,7 +64,7 @@ pub async fn chat(bot: Bot, msg: Message) -> ResponseResult<Message> {
 
 pub async fn image(bot: Bot, msg: Message) -> ResponseResult<Message> {
     let model = ImageModel::default();
-    let prompt = msg.text().unwrap().trim_start_matches("/image").trim();
+    let prompt = msg.text().unwrap().split_once(" ").unwrap().1;
     let wait_image = Config::default().wait_image();
     let wait_message = bot
         .send_message(msg.chat.id, wait_image)
