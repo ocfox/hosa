@@ -9,7 +9,6 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     nixpkgs.url = "github:cachix/devenv-nixpkgs/rolling";
     devenv.url = "github:cachix/devenv";
-    crane.url = "github:hercules-ci/crane";
   };
 
   nixConfig = {
@@ -17,7 +16,7 @@
     extra-substituters = "https://devenv.cachix.org";
   };
 
-  outputs = inputs@{ flake-parts, devenv-root, crane, ... }:
+  outputs = inputs@{ flake-parts, devenv-root, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         inputs.devenv.flakeModule
@@ -47,7 +46,6 @@
           ];
 
           packages = [
-            config.packages.default
             pkgs.nixpkgs-fmt
             pkgs.nil
           ]
